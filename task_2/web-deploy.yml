@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: web
   labels:
     app: web
-  name: web
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -15,14 +15,14 @@ spec:
         app: web
     spec:
       containers:
-      - image: nginx:latest
-        name: nginx
+      - name: web
+        image: nginx:stable
         ports:
         - containerPort: 80
         volumeMounts:
-          - name: config-nginx
-            mountPath: /etc/nginx/conf.d
+            - name: web-cm
+              mountPath: /usr/share/nginx/html/
       volumes:
-        - name: config-nginx
-          configMap:
-            name: nginx-configmap
+      - name: web-cm
+        configMap:
+          name: web-cm

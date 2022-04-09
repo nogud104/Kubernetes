@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-canary
+  labels:
+    app: web-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-canary
+  template:
+    metadata:
+      labels:
+        app: web-canary
+    spec:
+      containers:
+      - name: web-canary
+        image: nginx:stable
+        ports:
+        - containerPort: 80
+        volumeMounts:
+            - name: web-cm-canary
+              mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: web-cm-canary
+        configMap:
+          name: web-cm-canary
