@@ -1,0 +1,29 @@
+kubectl describe ingress sample-app-canary -n sample-appapiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx"},"name":"nginx","namespace":"default"},"spec":{"rules":[{"host":"ingress-nginx.test","http":{"paths":[{"backend":{"service":{"name":"nginx","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+  creationTimestamp: "2022-04-10T19:10:10Z"
+  generation: 1
+  name: nginx
+  namespace: default
+  resourceVersion: "34146"
+  uid: c5c666ee-fbb0-47b9-8942-d2e7f596d468
+spec:
+  rules:
+  - host: ingress-nginx.test
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.49.2

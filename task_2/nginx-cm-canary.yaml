@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: web-cm
+  name: nginx-cm-canary
 data:
   index.html: |
     <html>
-    <h1>!!! PRODUCTION !!!</h1>
+    <h1>Welcome to CANARY</h1>
     </br>
     </html
