@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx-canary
-        image: nginx:alpine
+        image: nginx:latest
         resurces:
         ports:
         - containerPort: 80
